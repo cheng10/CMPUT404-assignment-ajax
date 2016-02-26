@@ -31,6 +31,8 @@ nosetests.xml
 *.mo
 
 # Mr Developer
+.idea
+venv
 .mr.developer.cfg
 .project
 .pydevproject
