@@ -87,6 +87,7 @@ def update(entity):
         myWorld.update(entity, "x", obj.x)
         myWorld.update(entity, "y", obj.y)
         myWorld.update(entity, "colour", obj.colour)
+        myWorld.update(entity, "radius", obj.radius)
     elif request.method == "PUT":
         myWorld.set(entity, obj)
     return Response(json.dumps(myWorld.get(entity)), status=200, mimetype="application/json")
@@ -100,7 +101,7 @@ def world():
     elif request.method == "POST":
         obj = flask_post_json()
         for key in obj:
-            myWorld.set(key.obj.key)
+            myWorld.set(key, obj.key)
     return Response(json.dumps(myWorld.world()), status=200, mimetype="application/json")
 
 
@@ -114,7 +115,7 @@ def get_entity(entity):
 def clear():
     '''Clear the world out!'''
     myWorld.clear()
-    return Response(myWorld.world(), status=200, mimetype="application/json")
+    return Response(json.dumps(myWorld.world()), status=200, mimetype="application/json")
 
 if __name__ == "__main__":
     app.run()
