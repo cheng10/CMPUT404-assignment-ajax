@@ -84,10 +84,10 @@ def update(entity):
     '''update the entities via this interface'''
     obj = flask_post_json()
     if request.method == "POST":
-        myWorld.update(entity, "x", obj.x)
-        myWorld.update(entity, "y", obj.y)
-        myWorld.update(entity, "colour", obj.colour)
-        myWorld.update(entity, "radius", obj.radius)
+        myWorld.update(entity, "x", obj["x"])
+        myWorld.update(entity, "y", obj["y"])
+        myWorld.update(entity, "colour", obj["colour"])
+        myWorld.update(entity, "radius", obj["radius"])
     elif request.method == "PUT":
         myWorld.set(entity, obj)
     return Response(json.dumps(myWorld.get(entity)), status=200, mimetype="application/json")
@@ -101,7 +101,7 @@ def world():
     elif request.method == "POST":
         obj = flask_post_json()
         for key in obj:
-            myWorld.set(key, obj.key)
+            myWorld.set(key, obj[key])
     return Response(json.dumps(myWorld.world()), status=200, mimetype="application/json")
 
 

@@ -41,8 +41,8 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
                 if (xhr.status==200) {
                     //XXX: parse some JSON from the request!
                     //XXX: Pass the data to the callback!
-                    var obj = JSON.parse(xhr.responseText)
-                    callback(context, obj)
+                    var obj = JSON.parse(xhr.responseText);
+                    callback(context, obj);
                 }
             } 
             catch(e) {
@@ -147,7 +147,7 @@ function addEntity(entity, data) {
     world[entity] = data;
     drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-    sendJSONXMLHTTPRequest("localhost:5000/entity/"+entity, data, drawCircle());
+    sendJSONXMLHTTPRequest("http://localhost:5000/entity/"+entity, data, drawCircle);
 
 }
 
@@ -294,7 +294,7 @@ function getWorld(url, callback) {
 
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
-    getWorld("localhost:5000/world", updateWorld);
+    getWorld("http://localhost:5000/world", updateWorld);
     drawFrame();
 }
 
